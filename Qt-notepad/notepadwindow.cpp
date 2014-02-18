@@ -15,11 +15,11 @@ NotepadWindow::NotepadWindow(QWidget *parent)
 
     setMenuBar(mainMenu_);
 
-    actArchivoAbrir_ = new QAction(QIcon("new"), tr("&Abrir"), this);                         // instancio una accion para el menu archivo
+    actArchivoAbrir_ = new QAction(QIcon("open"), tr("&Abrir"), this);                         // instancio una accion para el menu archivo
     actArchivoAbrir_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));        // acceso directo
     mnuArchivo_->addAction(actArchivoAbrir_);                                   // asigno la accion al menu
 
-    actArchivoGuardar_ = new QAction(tr("&Guardar"), this);                     // instancio una accion para el menu archivo
+    actArchivoGuardar_ = new QAction(QIcon("save"), tr("&Guardar"), this);                     // instancio una accion para el menu archivo
     actArchivoGuardar_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));      // acceso directo
     mnuArchivo_->addAction(actArchivoGuardar_);                                 // asigno la accion al menu
 
@@ -43,11 +43,11 @@ NotepadWindow::NotepadWindow(QWidget *parent)
     actEditarCortar_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_X));
     mnuEditar_->addAction(actEditarCortar_);
 
-    actEditarDeshacer_ = new QAction(tr("&Deshacer"), this);
+    actEditarDeshacer_ = new QAction(QIcon("undo"), tr("&Deshacer"), this);
     actEditarDeshacer_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
     mnuEditar_->addAction(actEditarDeshacer_);
 
-    actEditarRehacer_ = new QAction(tr("&Rehacer"), this);
+    actEditarRehacer_ = new QAction(QIcon("redo"), tr("&Rehacer"), this);
     actEditarRehacer_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
     mnuEditar_->addAction(actEditarRehacer_);
 
@@ -67,6 +67,8 @@ NotepadWindow::NotepadWindow(QWidget *parent)
     QToolBar *toolbar = addToolBar("Principal");
     toolbar->addAction(actArchivoAbrir_);
     toolbar->addAction(actArchivoGuardar_);
+    toolbar->addAction(actEditarDeshacer_);
+    toolbar->addAction(actEditarRehacer_);
 
 
     // conectar las acciones a los slots

@@ -443,7 +443,11 @@ compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: Qt-notepad/resources.qrc \
-		Qt-notepad/new.png
+		Qt-notepad/undo.png \
+		Qt-notepad/redo.png \
+		Qt-notepad/open.png \
+		Qt-notepad/new.png \
+		Qt-notepad/save.png
 	/home/yeray/Qt/5.2.1/gcc_64/bin/rcc -name resources Qt-notepad/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_header_make_all: moc_notepadwindow.cpp
