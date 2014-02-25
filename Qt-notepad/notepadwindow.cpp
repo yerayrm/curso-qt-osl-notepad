@@ -28,6 +28,7 @@ NotepadWindow::NotepadWindow(QWidget *parent)
     mnuArchivo_->addAction(actArchivoCerrar_);                                  // asigno la accion al menu
 
 
+
     mnuEditar_ = new QMenu(tr("&Editar"));
     mainMenu_->addMenu(mnuEditar_);
 
@@ -51,6 +52,22 @@ NotepadWindow::NotepadWindow(QWidget *parent)
     actEditarRehacer_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
     mnuEditar_->addAction(actEditarRehacer_);
 
+
+    // Opcional 2. Bold, italic y underline
+    actEditarBold_ = new QAction(QIcon("bold"), tr("&Negrita"), this);
+    actEditarBold_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
+    mnuEditar_->addAction(actEditarBold_);
+
+    actEditarItalic_ = new QAction(QIcon("italic"), tr("&Cursiva"), this);
+    actEditarItalic_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
+    mnuEditar_->addAction(actEditarItalic_);
+
+    actEditarUnderline_ = new QAction(QIcon("underline"), tr("&Subrayado"), this);
+    actEditarUnderline_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+    mnuEditar_->addAction(actEditarUnderline_);
+    // end
+
+
     mnuFormato_ = new QMenu(tr("&Formato"));
     mainMenu_->addMenu(mnuFormato_);
 
@@ -70,6 +87,9 @@ NotepadWindow::NotepadWindow(QWidget *parent)
     toolbar->addAction(actEditarDeshacer_);
     toolbar->addAction(actEditarRehacer_);
 
+    toolbar->addAction(actEditarBold_);
+    toolbar->addAction(actEditarItalic_);
+    toolbar->addAction(actEditarUnderline_);
 
     // conectar las acciones a los slots
     connect(actArchivoAbrir_, SIGNAL(triggered()), this, SLOT(alAbrir()) );     //triggered es una señar del objeto QAction cuando hacemos click en la opcion
@@ -82,6 +102,10 @@ NotepadWindow::NotepadWindow(QWidget *parent)
     connect(actEditarRehacer_, SIGNAL(triggered()), txtEditor_, SLOT(redo()));
     connect(actFormatoFuente_, SIGNAL(triggered()), this, SLOT(alFuente()));
     connect(actAyudaAcercade_, SIGNAL(triggered()), this, SLOT(alAcercade()));
+
+    connect(actEditarBold_, SIGNAL(triggered()), this, SLOT(alFuenteBold()));
+    connect(actEditarItalic_, SIGNAL(triggered()), this, SLOT(alFuenteItalic()));
+    connect(actEditarUnderline_, SIGNAL(triggered()), this, SLOT(alFuenteUnderline()));
 }
 
 // destructor
@@ -143,5 +167,52 @@ void NotepadWindow::alAcercade()
 {
     QMessageBox::about(this, "Acerca de...", "Sublime Yeray");
 }
+
+void NotepadWindow::alFuenteBold()
+{
+    QTextCursor cursor = txtEditor_->textCursor();
+    QTextCharFormat formato = cursor.charFormat();
+    QFont font;
+    if (formato.fontWeight() == QFont::Bold) {
+        font.setBold(false);
+    }
+    else {
+        font.setBold(true);
+    }
+    formato.setFont(font);
+    cursor.setCharFormat(formato);
+}
+
+void NotepadWindow::alFuenteItalic()
+{
+    QTextCursor cursor = txtEditor_->textCursor();
+    QTextCharFormat formato = cursor.charFormat();
+    QFont font;
+    if (formato.fontItalic()) {
+        font.setItalic(false);
+    }
+    else {
+        font.setItalic(true);
+    }
+    formato.setFont(font);
+    cursor.setCharFormat(formato);
+}
+
+
+void NotepadWindow::alFuenteUnderline()
+{
+    QTextCursor cursor = txtEditor_->textCursor();
+    QTextCharFormat formato = cursor.charFormat();
+    QFont font;
+    if (formato.underlineStyle()) {
+        font.setUnderline(false);
+    }
+    else {
+        font.setUnderline(true);
+    }
+    formato.setFont(font);
+    cursor.setCharFormat(formato);
+}
+
 
 

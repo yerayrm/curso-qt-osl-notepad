@@ -39,6 +39,11 @@ private:
     QAction* actEditarCortar_;
     QAction* actEditarDeshacer_;
     QAction* actEditarRehacer_;
+    // opcional 2
+    QAction* actEditarBold_;
+    QAction* actEditarItalic_;
+    QAction* actEditarUnderline_;
+
     QClipboard * portapapeles_;
     QMenu* mnuAyuda_;
     QAction* actAyudaAcercade_;
@@ -48,6 +53,9 @@ public slots:
     void alGuardar();
     void alFuente();
     void alAcercade();
+    void alFuenteBold();
+    void alFuenteItalic();
+    void alFuenteUnderline();
 };
 
 

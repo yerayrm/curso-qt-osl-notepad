@@ -5,5 +5,8 @@
         <file alias="undo">undo.png</file>
         <file alias="redo">redo.png</file>
         <file alias="open">open.png</file>
+        <file alias="bold">bold.png</file>
+        <file alias="italic">italic.png</file>
+        <file alias="underline">underline.png</file>
     </qresource>
 </RCC>
