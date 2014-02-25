@@ -4,28 +4,28 @@
 NotepadWindow::NotepadWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    txtEditor_ = new QPlainTextEdit(this);
+    txtEditor_ = new QTextEdit(this);
     setCentralWidget(txtEditor_);
 
     // inicializamos los menus
     mainMenu_ = new QMenuBar(this);
 
-    mnuArchivo_ = new QMenu(tr("&Archivo"), this);                          // el & sirve para abrir un acceso directo
+    mnuArchivo_ = new QMenu(tr("&Archivo"), this);                              // el & sirve para abrir un acceso directo
     mainMenu_ -> addMenu(mnuArchivo_);
 
     setMenuBar(mainMenu_);
 
-    actArchivoAbrir_ = new QAction(QIcon("open"), tr("&Abrir"), this);                         // instancio una accion para el menu archivo
+    actArchivoAbrir_ = new QAction(QIcon("open"), tr("&Abrir"), this);          // instancio una accion para el menu archivo
     actArchivoAbrir_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));        // acceso directo
     mnuArchivo_->addAction(actArchivoAbrir_);                                   // asigno la accion al menu
 
-    actArchivoGuardar_ = new QAction(QIcon("save"), tr("&Guardar"), this);                     // instancio una accion para el menu archivo
+    actArchivoGuardar_ = new QAction(QIcon("save"), tr("&Guardar"), this);      // instancio una accion para el menu archivo
     actArchivoGuardar_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));      // acceso directo
     mnuArchivo_->addAction(actArchivoGuardar_);                                 // asigno la accion al menu
 
-    actArchivoCerrar_ = new QAction(tr("&Cerrar"), this);                     // instancio una accion para el menu archivo
-    actArchivoCerrar_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));      // acceso directo
-    mnuArchivo_->addAction(actArchivoCerrar_);                                 // asigno la accion al menu
+    actArchivoCerrar_ = new QAction(tr("&Cerrar"), this);                       // instancio una accion para el menu archivo
+    actArchivoCerrar_ -> setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));       // acceso directo
+    mnuArchivo_->addAction(actArchivoCerrar_);                                  // asigno la accion al menu
 
 
     mnuEditar_ = new QMenu(tr("&Editar"));

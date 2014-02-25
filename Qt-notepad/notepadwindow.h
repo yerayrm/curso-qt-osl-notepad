@@ -25,7 +25,7 @@ public:
     ~NotepadWindow();
 
 private:
-    QPlainTextEdit* txtEditor_;
+    QTextEdit* txtEditor_;
     QMenuBar* mainMenu_;
     QMenu* mnuArchivo_;
     QAction* actArchivoAbrir_;
